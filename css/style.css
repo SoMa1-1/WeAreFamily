@@ -1,0 +1,505 @@
+body {
+}
+
+@media all and (min-width: 1200px){
+	
+	#intro {
+		width: 100%;
+		height: 760px;
+		background-color: white;
+	}
+	
+	.intro_box {
+		position: absolute;
+		left: 35%;
+		top: 20%;
+		text-align: center;
+	}
+	
+	.intro_brand {
+		font-weight: bold;
+		font-size: 35px;
+		color: #60A51E;
+	}
+	
+	.main_title {
+		color: white;
+		font-size: 60px;
+		margin-left: 10%;
+		margin-top: 10%;
+	}
+	
+	.sub_title {
+		color: white;
+		font-weight: normal;
+		font-size: 20px;
+		position: absolute;
+	    left: 30%;
+	    top: 70%;
+	}
+	
+	#section-title {
+		color: #60A51E;
+		font-weight: bold;
+		font-size: 30px;
+		
+		position: absolute;
+	    left: 3%;
+	    top: 3%;
+	}
+	
+	.date_control {
+		position: absolute;
+		left: 44%;
+		top: 7%;
+	}
+	
+	.date_control span {
+		font-size: 18px;
+	}
+	
+	.chart_move {
+		width: 30%;
+		height: 60%;
+		
+		position: absolute;
+		left: 3%;
+		top: 18%;
+	}
+	
+	.chart_sleep {
+		width: 35%;
+		height: 30%;
+		
+		position: absolute;
+		left: 32%;
+		top: 18%;
+	}
+	
+	.chart_sleep div {
+		margin: 1%; 
+		display: inline-block;
+	}
+	
+	.chart_phone {
+		width: 35%;
+		height: 60%;
+		
+		position: absolute;
+		left: 63%;
+		top: 18%;
+	}
+	
+	.family_status {
+		background-color: WhiteSmoke;
+		
+	    left: 0;
+	    right: 0;
+	    top: 80%;
+	    
+	    width: 100%;
+	    height: 135px;
+	    
+	    position: absolute;
+	    z-index: 1000;
+	}
+	
+	.family_list > li {
+		width: 25%;
+		float: left;
+	}
+	
+	.family_misson1 {
+		position: absolute;
+		left: 10%;
+		top: 15%;
+	}
+	
+	.family_misson1 legend {
+		color: #106008;
+		font-weight: bold;
+		font-size: 26px;
+	}
+	
+	.family_misson1 span {
+		font-size: 18px;
+	}
+	
+	.family_misson2 {
+		position: absolute;
+		left: 55%;
+		top: 15%;
+	}
+	
+	.family_misson2 legend {
+		color: #106008;
+		font-weight: bold;
+		font-size: 26px;
+	}
+	
+	.family_misson2 span {
+		font-size: 18px;
+	}
+	
+	.message_location {
+		position: absolute;
+		left: 3%;
+		top: 15%;
+		
+		width: 35%;
+	}
+	
+	.message_condition {
+		position: absolute;
+		left: 43%;
+		top: 15%;
+		
+		width: 50%;
+		height: 75%;
+		
+		background-color: #C8E6C9;
+		border-radius: 15px;
+	}
+	
+	.message_select_from {
+		margin-left: 3%;
+		margin-top: 5%;
+		
+		width: 40%;
+	}
+	
+	.message_select_time, .message_select_event, .message_select_to, .message_select_message{
+		margin-left: 3%;
+		margin-top: 4%;
+		
+		width: 40%;
+	}
+	
+	.option_menu1 {
+		position: absolute;
+		left: 3%;
+		top: 20%;
+		
+		width: 45%;
+		height: 60%;
+		
+		background-color: #C8E6C9;
+		border-radius: 15px;
+	}
+	
+	.option_menu2 {
+		position: absolute;
+		left: 51%;
+		top: 20%;
+		
+		width: 45%;
+		height: 60%;
+		
+		background-color: #C8E6C9;
+		border-radius: 15px;
+	}
+	
+	.option_menu3 {
+		display: none;
+		position: absolute;
+		left: 89%;
+		top: 20%;
+		
+		width: 11%;
+		height: 60%;
+		
+		background-color: #C8E6C9;
+		border-radius: 15px;
+	}
+	
+	#menu1_code {
+		position: absolute;
+		left: 10%;
+		top: 20%;
+		
+		width: 60%;
+		height: 60%;
+		
+		background-color: #C8E6C9;
+		border-radius: 15px;
+	}
+	
+
+	#navi-location, #navi-message, #navi-lifestyle, #navi-mission, #navi-option {
+		height: 123px;
+	}
+	
+	.navigator img {
+		margin-top: 40px;
+		margin-left: 15px;
+		width: 50px;
+	}
+	
+	.ui-li-heading { 
+		font-size: 30px;
+		font-weight: bold;
+		display: block;
+		margin-left: 0px;
+		margin-top: 30px;
+		margin-bottom: 0px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap; 
+	}
+	
+	.ui-li-desc { 
+		font-size: 11px;
+		font-weight: normal;
+		display: block;
+		margin-left: 0px;
+		margin-top: 0px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	
+}
+
+@media all and (min-width: 1920px){
+
+	#intro {
+		width: 100%;
+		height: 1080px;
+		background-color: white;
+	}
+	
+	.intro_box {
+		position: absolute;
+		left: 35%;
+		top: 20%;
+		text-align: center;
+	}
+	
+	.intro_brand {
+		font-weight: bold;
+		font-size: 50px;
+		color: #60A51E;
+	}
+	
+	.main_title {
+		color: white;
+		font-size: 100px;
+		margin-left: 10%;
+		margin-top: 10%;
+	}
+	
+	.sub_title {
+		color: white;
+		font-weight: normal;
+		font-size: 30px;
+		position: absolute;
+	    left: 30%;
+	    top: 70%;
+	}
+	
+	#section-title {
+		color: #60A51E;
+		font-weight: bold;
+		font-size: 45px;
+		
+		position: absolute;
+	    left: 3%;
+	    top: 3%;
+	}
+	
+	.date_control {
+		position: absolute;
+		left: 44%;
+		top: 7%;
+	}
+	
+	.date_control span {
+		font-size: 25px;
+	}
+	
+	.chart_move {
+		width: 30%;
+		height: 60%;
+		
+		position: absolute;
+		left: 3%;
+		top: 20%;
+	}
+	
+	.chart_sleep {
+		width: 35%;
+		height: 30%;
+		
+		position: absolute;
+		left: 32%;
+		top: 20%;
+	}
+	
+	.chart_sleep div {
+		margin: 1%; 
+		display: inline-block;
+	}
+	
+	.chart_phone {
+		width: 35%;
+		height: 60%;
+		
+		position: absolute;
+		left: 63%;
+		top: 20%;
+	}
+	
+	.family_status {
+		background-color: WhiteSmoke;
+		
+	    left: 0;
+	    right: 0;
+	    top: 85%;
+	    
+	    width: 100%;
+	    height: 200px;
+	    
+	    position: absolute;
+	    z-index: 1000;
+	}
+	
+	.family_list > li {
+		width: 25%;
+		float: left;
+	}
+	
+	.family_misson1 {
+		position: absolute;
+		left: 10%;
+		top: 15%;
+	}
+	
+	.family_misson1 legend {
+		color: #106008;
+		font-weight: bold;
+		font-size: 40px;
+	}
+	
+	.family_misson1 span {
+		font-size: 25px;
+	}
+	
+	.family_misson2 {
+		position: absolute;
+		left: 55%;
+		top: 15%;
+	}
+	
+	.family_misson2 legend {
+		color: #106008;
+		font-weight: bold;
+		font-size: 40px;
+	}
+	
+	.family_misson2 span {
+		font-size: 25px;
+	}
+	
+	.message_location {
+		position: absolute;
+		left: 3%;
+		top: 15%;
+		
+		width: 35%;
+	}
+	
+	.message_condition {
+		position: absolute;
+		left: 43%;
+		top: 15%;
+		
+		width: 50%;
+		height: 75%;
+		
+		background-color: #C8E6C9;
+		border-radius: 15px;
+	}
+	
+	.message_select_from {
+		margin-left: 3%;
+		margin-top: 5%;
+		
+		width: 40%;
+	}
+	
+	.message_select_time, .message_select_event, .message_select_to, .message_select_message{
+		margin-left: 3%;
+		margin-top: 4%;
+		
+		width: 40%;
+	}
+	
+	.option_menu1 {
+		position: absolute;
+		left: 3%;
+		top: 20%;
+		
+		width: 40%;
+		height: 60%;
+		
+		background-color: #C8E6C9;
+		border-radius: 15px;
+	}
+	
+	.option_menu2 {
+		position: absolute;
+		left: 46%;
+		top: 20%;
+		
+		width: 40%;
+		height: 60%;
+		
+		background-color: #C8E6C9;
+		border-radius: 15px;
+	}
+	
+	.option_menu3 {
+		position: absolute;
+		left: 89%;
+		top: 20%;
+		
+		width: 11%;
+		height: 60%;
+		
+		background-color: #C8E6C9;
+		border-radius: 15px;
+	}
+	
+	#navi-location, #navi-message, #navi-lifestyle, #navi-mission, #navi-option {
+		height: 199px;
+	}
+	
+	.navigator img {
+		margin-top: 60px;
+		margin-left: 25px;
+		width: 80px;
+	}
+	
+	.ui-li-heading { 
+		font-size: 45px;
+		font-weight: bold;
+		display: block;
+		margin-left: 20px;
+		margin-top: 55px;
+		margin-bottom: 0px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap; 
+	}
+	
+	.ui-li-desc { 
+		font-size: 20px;
+		font-weight: normal;
+		display: block;
+		margin-left: 20px;
+		margin-top: 0px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+}
