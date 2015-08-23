@@ -225,7 +225,7 @@ body {
 	}
 	
 
-	#navi-location, #navi-message, #navi-lifestyle, #navi-mission, #navi-option {
+	#navi-location, #navi-message, #navi-lifestyle, #navi-mission, #navi-setting {
 		height: 123px;
 	}
 	
@@ -470,7 +470,7 @@ body {
 		border-radius: 15px;
 	}
 	
-	#navi-location, #navi-message, #navi-lifestyle, #navi-mission, #navi-option {
+	#navi-location, #navi-message, #navi-lifestyle, #navi-mission, #navi-setting {
 		height: 199px;
 	}
 	

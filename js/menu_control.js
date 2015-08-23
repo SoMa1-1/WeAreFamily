@@ -3,7 +3,7 @@ var menu_index = 0;
 var move = [
             // Main
             "#navi-home", "#navi-location", "#navi-message", "#navi-lifestyle", "#navi-mission",
-            "#navi-option", "", "", "", ""
+            "#navi-setting", "", "", "", ""
             
             // Location
             , "", "", "", "", ""
@@ -14,12 +14,12 @@ var move = [
             , "", "", "", "", ""
             
             // LifeStyle
-            , "", "", "", "", ""
+            , "#lifestyle_yesterday", "#lifestyle_tommorow", "", "", ""
             , "", "", "", "", ""
             
             // Family Mission
-            , "", "", "", "", ""
-            , "", "", "", "", ""
+            , "#lifestyle_mission1", "#lifestyle_mission2", "#lifestyle_mission3", "#lifestyle_mission4", "#lifestyle_mission5"
+            , "#content_mission1", "#content_mission2", "#content_mission3", "", ""
             
             // Option
             , "#option-generate_code", "#option-set_location", "", "", ""
@@ -38,7 +38,7 @@ function moveMenu(index, state) {
 
 function changePage(menu_index){
 	
-	var page_title = ["Main", "Location", "Message", "LifeStyle", "Mission", "Options"];
+	var page_title = ["Main", "Location", "Message", "LifeStyle", "Mission", "Setting"];
 	$("#section-title").text(page_title[menu_index]);
 	
 	if(menu_index == 0) {
@@ -80,6 +80,8 @@ function changePage(menu_index){
 //			google.maps.event.addDomListener(window, 'load', initialize);
 				
 		} else if(menu_index == 3) {
+			
+			bindKeyToLifeStyle();
 			
 			var ctx_move = document.getElementById("canvas_move").getContext("2d");
 			var move_bar = new Chart(ctx_move).Bar(barChartData, {
@@ -129,10 +131,13 @@ function changePage(menu_index){
 			 
 			    setTimeout( progress, 2000 );
 			  });
+			
+		} else if(menu_index == 4) {
+			bindKeyToMission();
 		} else if(menu_index == 5) {
-			document.body.removeEventListener("keydown",handelMain,false);
-			bindKeyToOption();
+			bindKeyToSetting();
 		}
+		
 	} else if(menu_index == 50) {
 		$("#option_menus").hide();
 		$("#menu1_code").show();
@@ -147,46 +152,9 @@ function changePage(menu_index){
 	}
 }
 
-
-function makePairingCode() {
-	var code = "";
-	for(var i = 0; i < 6; i++)
-		code += Math.floor(Math.random() * 9) + 1 
-	return code;
-}
-
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    var timer_count = setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.text(minutes + ":" + seconds);
-
-        if (--timer < 0) {
-        	clearInterval(timer_count);
-            display.text("00:00");
-        }
-    }, 1000);
-}
-
-function generateTvCode(t_duid, code) {
-    var xhr = new XMLHttpRequest();
-    var server_address = "http://172.16.100.56/tv";
-    xhr.open("GET", server_address + "?t_duid=" + t_duid + "&code=" + code, true);
-    
-    xhr.onreadystatechange = function(e){
-    	console.log(xhr);
-    		if(xhr.readyState == 4){
-    			if(xhr.status = 200){
-    				console.log(xhr.responseText);
-    			}else{
-    				console.log("Error loading page");
-    			}
-    		}
-    	};
-    xhr.send(null);
+function backToMain(current, menu) {
+	menu_index = menu;
+	moveMenu(current, false)
+	moveMenu(menu, true);
+	bindKeyToMain();
 }

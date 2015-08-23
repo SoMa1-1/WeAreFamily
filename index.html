@@ -15,19 +15,21 @@
     <link rel="stylesheet" href="./css/jquery-ui.css"/>
  
     <!--  JavaScript Libs -->
-    <script type="text/javascript" src="js/lib/jquery-1.9.1.js"></script>
-    <script src="https:/code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script type="text/javascript" src="js/lib/jqm-docs.js"></script>
-    <script type="text/javascript" src="js/lib/jquery.mobile-1.3.2.js"></script>
-	<script type="text/javascript" src="js/lib/TVKeyValue.js"></script>
-	<script type="text/javascript" src="js/lib/Chart.min.js"></script>
-	<script type="text/javascript" src="js/lib/googlemap.js"></script>
+    <script src="js/lib/jquery-1.9.1.js"></script>
+    <script src="js/lib/jquery-ui.js"></script>
+    <script src="js/lib/jqm-docs.js"></script>
+    <script src="js/lib/jquery.mobile-1.3.2.js"></script>
+	<script src="js/lib/TVKeyValue.js"></script>
+	<script src="js/lib/Chart.min.js"></script>
+	<script src="js/lib/googlemap.js"></script>
+	<script src="js/lib/distance.js"></script>
 	
 	<script src="js/server.js"></script>
-	<script src="js/menu_control.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/option.js"></script>
+	<script src="js/main.js"></script>
     <script src="js/lifestyle.js"></script>
+    <script src="js/mission.js"></script>
+    <script src="js/setting.js"></script>
+    <script src="js/menu_control.js"></script>
     
     <link rel="stylesheet" href="css/style.css"/>
 </head>
@@ -37,7 +39,7 @@
 	<div id="intro">
 	
 		<div class="intro_box">
-			<img src="http://smartthings-blog.s3.amazonaws.com/wp-content/uploads/2013/09/Iot-101.jpg" width="500" height="500">
+			<!-- <img src="http://smartthings-blog.s3.amazonaws.com/wp-content/uploads/2013/09/Iot-101.jpg" width="500" height="500"> -->
 			<h1 class="intro_brand"> WE ARE FAMILY </h1>
 		</div>
 		
@@ -163,9 +165,9 @@
             		<div id="section-LifeStyle" style="display: none;">
             		
 	            		<div class="date_control" data-role="controlgroup" data-type="horizontal" data-mini="true">
-						    <a href="#" data-role="button" data-icon="arrow-l" data-iconpos="left"></a>
-						    <a href="#" data-role="button">2015. 8. 5</a>
-						    <a href="#" data-role="button" data-icon="arrow-r" data-iconpos="right"></a>
+						    <a id="lifestyle_yesterday" href="#" data-role="button" data-icon="arrow-l" data-iconpos="left"></a>
+						    <a href="#" data-role="button">2015. 8. 22</a>
+						    <a id="lifestyle_tommorow" href="#" data-role="button" data-icon="arrow-r" data-iconpos="right"></a>
 						</div>
             		
             			<div class="chart_move">
@@ -239,24 +241,16 @@
 	            			<form style="margin-bottom: 10%;">
 							    <fieldset data-role="controlgroup">
 							        <legend>라이프스타일 기반 미션. 1 </legend>
-							        <input type="checkbox" name="checkbox-t-2a" id="checkbox-t-2a" data-theme="d">
-							        <label for="checkbox-t-2a">가족미션 가족미션 가족미션 가족미션 가족미션</label>
-							        <input type="checkbox" name="checkbox-t-2b" id="checkbox-t-2b" data-theme="d">
-							        <label for="checkbox-t-2b">가족미션 가족미션 가족미션 가족미션 가족미션</label>
-							        <input type="checkbox" name="checkbox-t-2c" id="checkbox-t-2c" data-theme="d">
-							        <label for="checkbox-t-2c">가족미션 가족미션 가족미션 가족미션 가족미션</label>
-							    </fieldset>
-							</form>
-							
-							<form>
-							    <fieldset data-role="controlgroup">
-							        <legend>라이프스타일 기반 미션. 2 </legend>
-							        <input type="checkbox" name="checkbox-t-2a" id="checkbox-t-2a" data-theme="d">
-							        <label for="checkbox-t-2a">가족미션 가족미션 가족미션 가족미션 가족미션</label>
-							        <input type="checkbox" name="checkbox-t-2b" id="checkbox-t-2b" data-theme="d">
-							        <label for="checkbox-t-2b">가족미션 가족미션 가족미션 가족미션 가족미션</label>
-							        <input type="checkbox" name="checkbox-t-2c" id="checkbox-t-2c" data-theme="d">
-							        <label for="checkbox-t-2c">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <input type="checkbox" name="lifestyle_mission1" id="checkbox-t-2a" data-theme="d">
+							        <label id="lifestyle_mission1" for="checkbox-t-2a">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <input type="checkbox" name="lifestyle_mission2" id="checkbox-t-2b" data-theme="d">
+							        <label id="lifestyle_mission2" for="checkbox-t-2b">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <input type="checkbox" name="lifestyle_mission3" id="checkbox-t-2c" data-theme="d">
+							        <label id="lifestyle_mission3" for="checkbox-t-2c">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <input type="checkbox" name="lifestyle_mission4" id="checkbox-t-2d" data-theme="d">
+							        <label id="lifestyle_mission4" for="checkbox-t-2d">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <input type="checkbox" name="lifestyle_mission5" id="checkbox-t-2e" data-theme="d">
+							        <label id="lifestyle_mission5" for="checkbox-t-2e">가족미션 가족미션 가족미션 가족미션 가족미션</label>
 							    </fieldset>
 							</form>
 						</div>
@@ -265,19 +259,19 @@
 	            			<form>
 							    <fieldset data-role="controlgroup">
 							        <legend>컨텐츠 기반 미션 1. </legend>
-							        <input type="checkbox" name="checkbox-t-2a" id="checkbox-t-2a" data-theme="d">
-							        <label for="checkbox-t-2a">가족미션 가족미션 가족미션 가족미션 가족미션</label>
-							        <input type="checkbox" name="checkbox-t-2b" id="checkbox-t-2b" data-theme="d">
-							        <label for="checkbox-t-2b">가족미션 가족미션 가족미션 가족미션 가족미션</label>
-							        <input type="checkbox" name="checkbox-t-2c" id="checkbox-t-2c" data-theme="d">
-							        <label for="checkbox-t-2c">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <input type="checkbox" name="checkbox-v-2a" id="checkbox-v-2a">
+							        <label id="content_mission1" for="checkbox-v-2a">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <input type="checkbox" name="checkbox-v-2b" id="checkbox-v-2b">
+							        <label id="content_mission2" for="checkbox-v-2b">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
+							        <label id="content_mission3" for="checkbox-v-2c">가족미션 가족미션 가족미션 가족미션 가족미션</label>
 							    </fieldset>
 							</form>
 						</div>
             		
             		</div>
             		
-            		<div id="section-Options" style="display: none;">
+            		<div id="section-Setting" style="display: none;">
             			<div id="option_menus">
 	            			<div id="option-generate_code" class="option_menu1">
 	            				<h1 class="main_title"> 
@@ -351,10 +345,10 @@
 	                	<p> Daily Family Misson</p></a>
 	                </li>
 	                
-	                <li id="navi-option" data-icon="false"><a href="index.html">
+	                <li id="navi-setting" data-icon="false"><a href="index.html">
 	                	<img src="images/navi_setting.png">
-	                	<h1>Options</h1>
-	                	<p>Customize What you want</p> </a>
+	                	<h1>Setting</h1>
+	                	<p>Sign up & Set Location</p> </a>
 	                </li>
 	            </ul>
             </div>

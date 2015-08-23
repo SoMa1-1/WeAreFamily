@@ -102,9 +102,9 @@ function naviOnClick() {
 function setFocusVisible(menu_index1,state){
 	var list = $.mobile.activePage.find("a[href]");
 	
-	$item = list[menu_index1];
+//	$item = list[menu_index1];
 	if (state) {
-		$item.focus();
+//		$item.focus();
 		if(menu_index1 != 0) {
 			naviFocus();
 		} else {
@@ -112,13 +112,15 @@ function setFocusVisible(menu_index1,state){
 		}
 	}
 	else {
-		$item.blur();
+//		$item.blur();
 	}
 }
 
 function handelMain(e) {
+	
 	switch(e.keyCode){
 		case TvKeyCode.KEY_LEFT:
+			break;
 		case TvKeyCode.KEY_UP:
 			if(menu_index != 0  && menu_index >0){
 				menu_index--;
@@ -129,8 +131,6 @@ function handelMain(e) {
 			moveMenu(menu_index, true);
 			break;
 		case TvKeyCode.KEY_RIGHT:
-			$(".option_menu1").addClass("ui-btn-active");
-			menu_index = menu_index +1;
 			break;
 		case TvKeyCode.KEY_DOWN:
 			if (menu_index == 0){
@@ -160,7 +160,6 @@ function handelMain(e) {
 }
 
 function bindKeyToMain(){
-	
 	naviToggle();
 	naviOnClick();
 	
@@ -169,8 +168,8 @@ function bindKeyToMain(){
 	setFocusVisible(menu_index, true);
 	moveMenu(menu_index, true);
 	
-	document.body.removeEventListener("keydown",handelMain,false);
-	document.body.addEventListener("keydown",handelMain ,false);
+	$(document).unbind();
+	$(document).keydown(handelMain);
 }
 
 $(document).on("pageshow", "#main", bindKeyToMain);
