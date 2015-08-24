@@ -45,42 +45,10 @@ function bindKeyToLifeStyle(){
 	$(document).keydown(handleLifeStyle);
 }
 
-/*
- *  Get Data.
- */
-
-function getOneDayDistance(m_duid, date, callBack) {
-    var xhr = new XMLHttpRequest();
-    var server_address = "http://localhost:3000/gps";
-    xhr.open("GET", server_address + "?m_duid=" + m_duid + "&date=" + date, true);
-    
-    xhr.onreadystatechange = function(e){
-    	console.log(xhr);
-    		if(xhr.readyState == 4){
-    			if(xhr.status = 200){
-    				console.log(callBack($.parseJSON(xhr.responseText)));
-    			}else{
-    				console.log("Error loading page");
-    			}
-    		}
-    	};
-    xhr.send(null);
-}
-
-function totalDistance(returnData) {
-	var results = returnData.results;
-	var total = 0;
-	
-	for(var i = 0; i < results.length-1; i++) {
-		var from = results[i];
-		var to = results[i+1];
-		total += getDistance(from.lat, from.lon, to.lat, to.lon);
-	}
-	
-	console.log(total);
-}
-
-getOneDayDistance("5", "2015-08-18", totalDistance);
+_getOneDayDistance("5", "2015-08-18", makeTotalDistance);
+_getOneDayPhoneUTime("test", "2015-08-17", makeTotalPhoneUTime);
+_getWakeUpTime("test", "2015-08-24", makeResultConsole);
+_getGoToBedTime("test", "2015-08-24", makeResultConsole);
 
 /*
  *   Chart.

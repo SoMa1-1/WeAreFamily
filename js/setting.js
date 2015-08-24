@@ -84,20 +84,3 @@ function startTimer(duration, display) {
     }, 1000);
 }
 
-function generateTvCode(t_duid, code) {
-    var xhr = new XMLHttpRequest();
-    var server_address = "http://172.16.100.56/tv";
-    xhr.open("GET", server_address + "?t_duid=" + t_duid + "&code=" + code, true);
-    
-    xhr.onreadystatechange = function(e){
-    	console.log(xhr);
-    		if(xhr.readyState == 4){
-    			if(xhr.status = 200){
-    				console.log(xhr.responseText);
-    			}else{
-    				console.log("Error loading page");
-    			}
-    		}
-    	};
-    xhr.send(null);
-}
