@@ -50,7 +50,7 @@ body {
 	
 	.date_control {
 		position: absolute;
-		left: 44%;
+		left: 37%;
 		top: 7%;
 	}
 	
@@ -64,16 +64,16 @@ body {
 		
 		position: absolute;
 		left: 3%;
-		top: 18%;
+		top: 16%;
 	}
 	
 	.chart_sleep {
-		width: 35%;
+		width: 28%;
 		height: 30%;
 		
 		position: absolute;
-		left: 32%;
-		top: 18%;
+		left: 34%;
+		top: 16%;
 	}
 	
 	.chart_sleep div {
@@ -87,7 +87,7 @@ body {
 		
 		position: absolute;
 		left: 63%;
-		top: 18%;
+		top: 16%;
 	}
 	
 	.family_status {
@@ -236,7 +236,7 @@ body {
 	}
 	
 	.ui-li-heading { 
-		font-size: 30px;
+		font-size: 28px;
 		font-weight: bold;
 		display: block;
 		margin-left: 0px;

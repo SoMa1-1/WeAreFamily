@@ -16,11 +16,13 @@ function handleLocation(e){
 
 		if(flag==(markers.length)-1){
 			flag = 0;
-			initialize2();
+			_getRealTimeGPS("tvduid", makeGoogleMap);
+//			initialize2();
 		 }
 		 else{
 			flag = ++flag;
-			initialize2();
+			_getRealTimeGPS("tvduid", makeGoogleMap);
+//			initialize2();
 		 }
 		break;
 	case TvKeyCode.KEY_LEFT:
@@ -28,21 +30,25 @@ function handleLocation(e){
 
 		if(flag==0){
 			flag=(markers.length)-1;
-			initialize2();
+			_getRealTimeGPS("tvduid", makeGoogleMap);
+//			initialize2();
 		 }
 		 else{
 			flag = --flag;
-			initialize2();
+			_getRealTimeGPS("tvduid", makeGoogleMap);
+//			initialize2();
 		 }
 		break;
 	case TvKeyCode.KEY_VOLUMEUP:
-		zoomflag = ++zoomflag;
-		initialize2();
+		zoomflag++;
+		_getRealTimeGPS("tvduid", makeGoogleMap);
+//		initialize2();
 
 		break;
 	case TvKeyCode.KEY_VOLUMEDOWN:
-		zoomflag = --zoomflag;
-		initialize2();
+		zoomflag--;
+		_getRealTimeGPS("tvduid", makeGoogleMap);
+//		initialize2();
 		
 	case TvKeyCode.KEY_BACK:
 		backToMain(menu_index, 1);
@@ -54,51 +60,22 @@ function handleLocation(e){
 
 }
 
+var realtime;
+
 function bindKeyToLocation(){
 //	menu_index = 50;
 //	moveMenu(menu_index,true);
+	
+	realtime = setInterval(function(){
+		_getRealTimeGPS("tvduid", makeGoogleMap);
+	}, 1000*10);
 	
 	$(document).unbind();
 	$(document).keydown(handleLocation);
 }
 
-var markers = [
-               {
-                   "title": '아빠',
-                   "lat": '37.503926',
-                   "lng": '127.044846',
-                   "description": '아빠위치 입니다.'
-               },
-               {
-            	   "title": '엄마',
-                   "lat": '37.504026',
-                   "lng": '127.043846',
-                   "description": '엄마위치 입니다.'
-               },
-               {
-            	   "title": '아들',
-                   "lat": '37.504126',
-                   "lng": '127.044646',
-                   "description": '아들위치 입니다.'
-               },
-               {
-            	   "title": '딸',
-                   "lat": '37.504226',
-                   "lng": '127.044546',
-                   "description": '딸위치 입니다.'
-               },
-               {
-            	   "title": '둘째딸',
-                   "lat": '37.504326',
-                   "lng": '127.044946',
-                   "description": '둘째딸 위치 입니다.'
-               }
-               ];
-
-
 var flag = 0;
 var zoomflag = 17;
-
 
 function initMap() {
 	  var map = new google.maps.Map(document.getElementById('googleMap'), {
@@ -112,9 +89,7 @@ function initMap() {
 	    geocodeAddress(geocoder, map);
 
 	  });
-	}
-
-
+}
  
 function geocodeAddress(geocoder, resultsMap) {
 	  var address = document.getElementById('search-1').value;
@@ -123,7 +98,6 @@ function geocodeAddress(geocoder, resultsMap) {
 	    if (status === google.maps.GeocoderStatus.OK) {
 	      resultsMap.setCenter(results[0].geometry.location);
 	      var location = results[0].geometry.location;
-	    
 	      
 	      markerSetting(resultsMap, location);
 	      
@@ -131,14 +105,13 @@ function geocodeAddress(geocoder, resultsMap) {
 	      alert('Geocode was not successful for the following reason: ' + status);
 	    }
 	  });
-	}
+}
 
 function markerSetting(resultsMap, location){
 	
 	marker = new google.maps.Marker({
         map: resultsMap,
-        position: location,
-        
+        position: location
       });
 }
 
@@ -167,8 +140,33 @@ function geocodeAddress2(geocoder, map, inputLat, inputLng) {
 
 	}
 
+var markers;
 
-function initialize2() {
+function makeGoogleMap(returnData) {
+	
+	console.log(returnData);
+	var results = returnData.results;
+	
+	markers = [
+           {
+               "title": '아빠',
+               "lat": results[2].lat,
+               "lng": results[2].lon,
+               "description": '아빠위치 입니다.'
+           },
+           {
+        	   "title": '엄마',
+               "lat": results[0].lat,
+               "lng": results[0].lon,
+               "description": '엄마위치 입니다.'
+           },
+           {
+        	   "title": '아들',
+               "lat": results[1].lat,
+               "lng": results[1].lon,
+               "description": '아들위치 입니다.'
+           }
+    ];
 	
 	  var mapProp = {
 	    center:new google.maps.LatLng(markers[0].lat, markers[0].lng),
@@ -195,8 +193,13 @@ function initialize2() {
 	        if(i == flag){
 	        	geocodeAddress2(geocoder, map, markers[flag].lat, markers[flag].lng);
 	        	
-	        	$("#locateInfo").html("<h3>"+markers[flag].title+"</h3>");
-	        	$("#locateInfo").append("<h6>&nbsp;위치&nbsp;:&nbsp;"+addressResult+"</h6>");
+	        	$("#location_relation").text(markers[flag].title);
+	        	
+	        	if(addressResult != "undefined") {
+	        		$("#location_position").text(addressResult);
+	        	} else {
+	        		$("#location_position").text("Loading...");
+	        	}
 	        	
 	        	var center = new google.maps.LatLng(markers[flag].lat, markers[flag].lng);
 	            map.panTo(center);
@@ -207,6 +210,6 @@ function initialize2() {
 	        }
 
 	}
-	google.maps.event.addDomListener(window, 'load', initialize2);
+	google.maps.event.addDomListener(window, 'load', makeGoogleMap);
 	  
-	}
+}

@@ -79,7 +79,11 @@
             		
             			<div id="googleMap2" style="width: 94%; height: 500px; margin-left: 3%; margin-top: 5%;"></div>
             		
-            			<div id="locateInfo" style="width: 20%; height: 100px; background: white; left:780px; position:relative; top: -520px;"></div>
+            			<div id="locateInfo" style="width: 20%; height: 100px; background: white; left:780px; position:relative; top: -500px;">
+            				 <img src="images/icon_father.png" width=50 height=50 style="float: left;">
+            				 <h3 id="location_relation" style="margin-top: 0px; padding-top: 15px;">아빠</h3>
+            				 <h4 id="location_position">대한민국 어딘가</h4>
+            			</div>
             		</div>
             		
             		<div id="section-Message" style="display: none;">
@@ -168,7 +172,7 @@
             		
 	            		<div class="date_control" data-role="controlgroup" data-type="horizontal" data-mini="true">
 						    <a id="lifestyle_yesterday" href="#" data-role="button" data-icon="arrow-l" data-iconpos="left"></a>
-						    <a href="#" data-role="button">2015. 8. 22</a>
+						    <a id="lifestyle_date" href="#" data-role="button" style="font-size: 25px; padding-left: 20px; padding-right: 20px;">2015. 8. 22</a>
 						    <a id="lifestyle_tommorow" href="#" data-role="button" data-icon="arrow-r" data-iconpos="right"></a>
 						</div>
             		
@@ -178,24 +182,32 @@
 						</div>
 						
 						<div class="chart_sleep">
-							<div style=margin-bottom: 5%;">
-								<canvas id="canvas_sleep1" width="140" height="140"/>
-							</div>
-							<div style="margin-bottom: 5%;">
-								<canvas id="canvas_sleep2" width="140" height="140"/>
+							<h2 style="text-align: center;"> Sleep Time </h2>
+							<div style="margin-bottom: 10%;">
+								<canvas id="canvas_sleep1" width="125" height="125"/>
 							</div>
 							
-							<div style="">
-								<canvas id="canvas_sleep3" width="140" height="140"/>
+							<span style="position: absolute; left: 45px; top: 200px;">Father</span>
+							<div style="margin-bottom: 10%;">
+								<canvas id="canvas_sleep2" width="125" height="125"/>
 							</div>
+							<span style="position: absolute; left: 175px; top: 200px;">Mother</span>
 							
 							<div style="">
-								<canvas id="canvas_sleep4" width="140" height="140"/>
+								<canvas id="canvas_sleep3" width="125" height="125"/>
 							</div>
+							<span style="position: absolute; left: 45px; top: 355px;">Son</span>
+							
+							<div style="">
+								<canvas id="canvas_sleep4" width="125" height="125"/>
+							</div>
+							<span style="position: absolute; left: 170px; top: 355px;">Daughter</span>
 						</div>
 						
 						<div class="chart_phone">
-							<canvas id="canvas_phone" height="500" width="500"></canvas>
+							<h2 style="text-align: center;"> Phone Using Time </h2>
+							<hr style="position: absolute; width: 290px; color: red; background-color: red; height: 1px; border: 0; left: 30px; top: 140px;" />
+							<canvas id="canvas_phone" height="320" width="350"></canvas>
 						</div>
 						
 						<div class="family_status">
@@ -205,7 +217,7 @@
 								    <li data-icon="false"><a href="#">
 								        <img src="images/icon_father.png">
 								        <h2>Father</h2>
-								        <div class="progressbar"><div class="progress-label"></div></div></a>
+								        <div id="HPbar_father"><div id="HPlabel_father"></div></div></a>
 								    </li>
 						    	</div>
 							    <div class="ui-block-b">
@@ -213,7 +225,7 @@
 								    <li data-icon="false"><a href="#">
 								        <img src="images/icon_mother.png">
 								        <h2>Mother</h2>
-								        <div class="progressbar"><div class="progress-label"></div></div></a>
+								        <div id="HPbar_mother"><div id="HPlabel_mother"></div></div></a>
 								    </li>
 						    	</div>
 							    <div class="ui-block-c">
@@ -221,7 +233,7 @@
 								    <li data-icon="false"><a href="#">
 								        <img src="images/icon_child.png">
 								        <h2>Son</h2>
-								        <div class="progressbar"><div class="progress-label"></div></div></a>
+								        <div id="HPbar_son"><div id="HPlabel_son"></div></div></a>
 								    </li>
 						    	</div>
 							    <div class="ui-block-d">
@@ -229,7 +241,7 @@
 								    <li data-icon="false"><a href="#">
 								        <img src="images/icon_child.png">
 								        <h2>Daughter</h2>
-								        <div class="progressbar"><div class="progress-label"></div></div></a>
+								        <div id="HPbar_daughter"><div id="HPlabel_daughter"></div></div></a>
 								    </li>
 						    	</div>
 							</div><!-- /grid-c -->

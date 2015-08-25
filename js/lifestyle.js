@@ -2,6 +2,9 @@
  *  Control.
  */
 
+var today = new Date();
+var date_count = 1;
+
 function handleLifeStyle(e) {
 	
 	switch(e.keyCode){
@@ -26,6 +29,24 @@ function handleLifeStyle(e) {
 		case TvKeyCode.KEY_DOWN:
 			break;
 		case TvKeyCode.KEY_ENTER:
+			if(menu_index == 30) {
+				today.setDate(today.getDate() - 1);
+				$("#lifestyle_date").text(today.getFullYear() + ". " + (today.getMonth()+1) + ". " + (today.getDate()));
+				destroyLifeStyleChart();
+				makeLifeStyleChart();
+			} else if(menu_index == 31) {
+				var now = new Date();
+				now.setDate(now.getDate() - 1);
+				
+				if(today <= now) {
+					today.setDate(today.getDate() + 1);
+					$("#lifestyle_date").text(today.getFullYear() + ". " + (today.getMonth()+1) + ". " + (today.getDate()));
+					destroyLifeStyleChart();
+					makeLifeStyleChart();
+				} else {
+					alert("There is no Data.");
+				}
+			}
 			changePage(menu_index);
 			break;
 		case TvKeyCode.KEY_BACK:
@@ -38,6 +59,8 @@ function handleLifeStyle(e) {
 
 function bindKeyToLifeStyle(){
 //	initOptionPage();
+	$("#lifestyle_date").text(today.getFullYear() + ". " + (today.getMonth()+1) + ". " + today.getDate());
+	
 	menu_index = 30;
 	moveMenu(menu_index,true);
 	
@@ -45,88 +68,20 @@ function bindKeyToLifeStyle(){
 	$(document).keydown(handleLifeStyle);
 }
 
-_getOneDayDistance("5", "2015-08-18", makeTotalDistance);
-_getOneDayPhoneUTime("test", "2015-08-17", makeTotalPhoneUTime);
-_getWakeUpTime("test", "2015-08-24", makeResultConsole);
-_getGoToBedTime("test", "2015-08-24", makeResultConsole);
-
 /*
- *   Chart.
+ *   Chart Format.
  */
 
 Chart.defaults.global.animation = false;
+var move_bar, phone_line, sleep_pie1, sleep_pie2, sleep_pie3, sleep_pie4;
 
-var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+var randomNum60to100 = function(){ return Math.round(Math.random()*40) + 60};
+var randomNum30to60 = function(){ return Math.round(Math.random()*30) + 30};
+var randomNum0to30 = function(){ return Math.round(Math.random()*30)};
 
-var barChartData = {
-	labels : ["Father","Mother","Son","Daughter"],
-	datasets : [
-		{
-			fillColor : "#60A51E",
-			strokeColor : "rgb(220,220,220)",
-			highlightFill: "rgb(220,220,220)",
-			highlightStroke: "rgb(220,220,220)",
-			data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-		}
-	]
+var randomNum6to12 = function(){ return Math.round(Math.random()*6) + 6};
+var randomNum18to24 = function(){ return Math.round(Math.random()*6) + 18};
 
-}
-
-var lineChartData = {
-		labels : ["January","February","March","April","May","June","July"],
-		datasets : [
-			{
-				label: "My First dataset",
-				fillColor : "#50A51E",
-				strokeColor : "rgba(220,220,220,1)",
-				pointColor : "rgba(220,220,220,1)",
-				pointStrokeColor : "#fff",
-				pointHighlightFill : "#fff",
-				pointHighlightStroke : "rgba(220,220,220,1)",
-				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-			},
-			{
-				label: "My First dataset",
-				fillColor : "#90A51E",
-				strokeColor : "rgba(220,220,220,1)",
-				pointColor : "rgba(220,220,220,1)",
-				pointStrokeColor : "#fff",
-				pointHighlightFill : "#fff",
-				pointHighlightStroke : "rgba(220,220,220,1)",
-				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-			}
-		]
-}
-
-var pieData = [
-				{
-					value: 300,
-					color:"#F7464A",
-					highlight: "#FF5A5E",
-					label: "Red"
-				},
-				{
-					value: 50,
-					color: "#46BFBD",
-					highlight: "#5AD3D1",
-					label: "Green"
-				},
-				{
-					value: 100,
-					color: "#FDB45C",
-					highlight: "#FFC870",
-					label: "Yellow"
-				},
-				{
-					value: 40,
-					color: "#949FB1",
-					highlight: "#A8B3C5",
-					label: "Grey"
-				},
-				{
-					value: 120,
-					color: "#4D5360",
-					highlight: "#616774",
-					label: "Dark Grey"
-				}
-];
+//_getOneDayPhoneUTime("test", "2015-08-17", makeTotalPhoneUTime);
+//_getWakeUpTime("test", "2015-08-24", makeResultConsole);
+//_getGoToBedTime("test", "2015-08-24", makeResultConsole)

@@ -3,20 +3,15 @@
  */
 
 //var server_address = "http://172.16.101.27:3000";
-var server_address = "http://localhost:3000";
+var server_address = "http://172.16.100.56:3000";
 
-function _createTv(t_duid, code) {
-	commonAjaxFuction('/tv?t_duid=' + t_duid + "&code=" + code);
-}
-
-function _generateTvCode(t_duid, code, callBack) {
-	commonAjaxFuction(server_address + "/tv?t_duid=" + t_duid + "&code=" + code, callBack);
+function _getRealTimeGPS(t_duid, callBack) {
+	commonAjaxFuction(server_address + "/push?t_duid=" + t_duid, callBack);
 }
 
 function _getOneDayDistance(m_duid, date, callBack) {
 	commonAjaxFuction(server_address + "/gps?m_duid=" + m_duid + "&date=" + date, callBack);
 }
-
 
 function _getOneDayPhoneUTime(m_duid, date, callBack) {
 	commonAjaxFuction(server_address + "/lock?m_duid=" + m_duid + "&date=" + date, callBack);
@@ -28,6 +23,10 @@ function _getWakeUpTime(m_duid, date, callBack) {
 
 function _getGoToBedTime(m_duid, date, callBack) {
 	commonAjaxFuction(server_address + "/lock?m_duid=" + m_duid + "&date=" + date + "&event=1", callBack);
+}
+
+function _generateTvCode(t_duid, code, callBack) {
+	commonAjaxFuction(server_address + "/tv?t_duid=" + t_duid + "&code=" + code, callBack);
 }
 
 // Ajax
@@ -66,6 +65,7 @@ function makeTotalDistance(returnData) {
 		total += getDistance(from.lat, from.lon, to.lat, to.lon);
 	}
 	
+	move_bar.addData([50], "TEST");
 	console.log("총 이동거리 : " + total);
 }
 
