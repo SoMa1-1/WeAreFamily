@@ -10,8 +10,8 @@ var move = [
             , "", "", "", "", ""
             
             // Message
-            , "", "", "", "", ""
-            , "", "", "", "", ""
+            , "#message_father", "#message_mother", "#message_son", "#message_daughter", "#message_option_time"
+            , "#message_option_location", "#message_msg", "#message_register", "", ""
             
             // LifeStyle
             , "#lifestyle_yesterday", "#lifestyle_tommorow", "", "", ""
@@ -60,6 +60,7 @@ function changePage(menu_index){
 			
 		} else if(menu_index == 2) {
 			
+			bindKeyToMessage();
 			initMap();
 			
 		} else if(menu_index == 3) {
@@ -79,6 +80,7 @@ function changePage(menu_index){
 		}
 		
 	} else if(menu_index == 50) {
+		
 		$("#option_menus").hide();
 		$("#menu1_code").show();
 		
@@ -89,6 +91,38 @@ function changePage(menu_index){
 		var fiveMinutes = 60 * 3;
 		startTimer(fiveMinutes, $('#time'));
 		_generateTvCode("12345", code, makeResultConsole);
+		
+	} else if(menu_index == 51) {
+		
+		function handleSetLocation(e) {
+			
+			switch(e.keyCode){
+				case TvKeyCode.KEY_LEFT:
+					backToMain(menu_index, 5);
+					break;
+				case TvKeyCode.KEY_ENTER:
+					geocodeAddress(geocoder, map);
+					break;	
+			}
+		}
+		
+		$(document).unbind();
+		$(document).keydown(handleSetLocation);
+		
+		var mapProp = {
+			    center:new google.maps.LatLng("37", "122"),
+			    zoom:zoomflag,
+			    mapTypeId:google.maps.MapTypeId.ROADMAP
+			  };
+		var map=new google.maps.Map(document.getElementById("googleMap3"), mapProp);
+		var geocoder = new google.maps.Geocoder();
+			
+//		geocodeAddress(geocoder, map);
+		
+		$("#option_menus").hide();
+		$("#menu2_location").show();
+		
+		$("#set_location_search").focus();
 	}
 }
 
@@ -118,7 +152,7 @@ function makeLifeStyleChart() {
 					strokeColor : "rgb(220,220,220)",
 					highlightFill: "rgb(220,220,220)",
 					highlightStroke: "rgb(220,220,220)",
-					data : [randomNum60to100(), randomNum0to30(), randomNum30to60(), randomNum30to60()]
+					data : [randomNum150to200(), randomNum0to30(), randomNum30to60(), randomNum30to60()]
 				}
 			]
 		}
@@ -134,7 +168,7 @@ function makeLifeStyleChart() {
 						pointStrokeColor : "#fff",
 						pointHighlightFill : "#fff",
 						pointHighlightStroke : "rgba(220,220,220,1)",
-						data : [randomNum0to30(), randomNum0to30(), randomNum30to60(), randomNum30to60()]
+						data : [randomNum60to100(), randomNum0to30(), randomNum150to200(), randomNum150to200()]
 					}
 				]
 		}
@@ -142,7 +176,7 @@ function makeLifeStyleChart() {
 	var pieData_father = [
       				{
       					value: randomNum6to12(),
-      					color:"#60A51E",
+      					color:"YellowGreen",
       					highlight: "#90A51E",
       					label: "Sleep"
       				},
@@ -157,7 +191,7 @@ function makeLifeStyleChart() {
       var pieData_mother = [
       				{
       					value: randomNum6to12(),
-      					color:"#60A51E",
+      					color:"YellowGreen",
       					highlight: "#90A51E",
       					label: "Sleep"
       				},
@@ -172,7 +206,7 @@ function makeLifeStyleChart() {
       var pieData_son = [
       				{
       					value: randomNum6to12(),
-      					color:"#60A51E",
+      					color:"YellowGreen",
       					highlight: "#90A51E",
       					label: "Sleep"
       				},
@@ -187,7 +221,7 @@ function makeLifeStyleChart() {
       var pieData_daughter = [
       				{
       					value: randomNum6to12(),
-      					color:"#60A51E",
+      					color:"YellowGreen",
       					highlight: "#90A51E",
       					label: "Sleep"
       				},
@@ -221,17 +255,18 @@ function makeLifeStyleChart() {
 	var ctx_sleep4 = document.getElementById("canvas_sleep4").getContext("2d");
 	sleep_pie4 = new Chart(ctx_sleep4).Pie(pieData_daughter);
 	
-	memberHPbar("father", 51);
-	memberHPbar("mother", 81);
-	memberHPbar("son", 82);
-	memberHPbar("daughter", 70);
+	memberHPbar("father", 51, 'yellow');
+	memberHPbar("mother", 81, 'green');
+	memberHPbar("son", 82, 'green');
+	memberHPbar("daughter", 70, 'YellowGreen');
 	
-	function memberHPbar(member, energy) {
+	function memberHPbar(member, energy, color) {
 	    var progressbar = $( "#HPbar_" + member ),
-	      progressLabel = $( "#HPlabel_" + member );
+	      progressLabel = $( "#HPlabel_" + member )
 	 
 	    progressbar.progressbar({
 	      value: false,
+	      create: function(event, ui) {$(this).find('.ui-widget-header').css({'background-color': color})},
 	      change: function() {
 	        progressLabel.text( progressbar.progressbar( "value" ) + "%" );
 	      },
@@ -241,18 +276,6 @@ function makeLifeStyleChart() {
 	    });
 	    
 	    progressbar.progressbar( "value", energy );
+	    
 	}
-	 
-//	    function progress() {
-//	      var val = progressbar.progressbar( "value" ) || 0;
-//	 
-//	      progressbar.progressbar( "value", val + 2 );
-//	 
-//	      if ( val < 99 ) {
-//	        setTimeout( progress, 80 );
-//	      }
-//	    }
-//	 
-//	    setTimeout( progress, 2000 );
-//	  });
 }

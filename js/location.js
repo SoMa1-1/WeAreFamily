@@ -3,59 +3,45 @@
  */
 
 function handleLocation(e){
+	
 	switch(e.keyCode){
 	
-	case TvKeyCode.KEY_UP:
-		console.log("위.");
-		break;
-	case TvKeyCode.KEY_DOWN:
-		
-		break;
-	case TvKeyCode.KEY_RIGHT:
-		console.log("오른..");
-
-		if(flag==(markers.length)-1){
-			flag = 0;
+		case TvKeyCode.KEY_UP:
+			zoom = map.getZoom();
+			map.setZoom(zoom+1);
+			break;
+		case TvKeyCode.KEY_DOWN:
+			zoom = map.getZoom();
+			map.setZoom(zoom-1);
+			break;
+		case TvKeyCode.KEY_RIGHT:
+			if(flag==(markers.length)-1){
+				flag = 0;
+				_getRealTimeGPS("tvduid", makeGoogleMap);
+			 }
+			 else{
+				flag = ++flag;
+				_getRealTimeGPS("tvduid", makeGoogleMap);
+			 }
+			break;
+		case TvKeyCode.KEY_LEFT:
+			if(flag==0){
+				flag=(markers.length)-1;
+				_getRealTimeGPS("tvduid", makeGoogleMap);
+			 }
+			 else{
+				flag = --flag;
+				_getRealTimeGPS("tvduid", makeGoogleMap);
+			 }
+			break;
+		case TvKeyCode.KEY_BACK:
+			backToMain(menu_index, 1);
+			break;
+		case TvKeyCode.KEY_ENTER:
 			_getRealTimeGPS("tvduid", makeGoogleMap);
-//			initialize2();
-		 }
-		 else{
-			flag = ++flag;
-			_getRealTimeGPS("tvduid", makeGoogleMap);
-//			initialize2();
-		 }
-		break;
-	case TvKeyCode.KEY_LEFT:
-		console.log("왼.");
-
-		if(flag==0){
-			flag=(markers.length)-1;
-			_getRealTimeGPS("tvduid", makeGoogleMap);
-//			initialize2();
-		 }
-		 else{
-			flag = --flag;
-			_getRealTimeGPS("tvduid", makeGoogleMap);
-//			initialize2();
-		 }
-		break;
-	case TvKeyCode.KEY_VOLUMEUP:
-		zoomflag++;
-		_getRealTimeGPS("tvduid", makeGoogleMap);
-//		initialize2();
-
-		break;
-	case TvKeyCode.KEY_VOLUMEDOWN:
-		zoomflag--;
-		_getRealTimeGPS("tvduid", makeGoogleMap);
-//		initialize2();
-		
-	case TvKeyCode.KEY_BACK:
-		backToMain(menu_index, 1);
-		break;
-
-	default:
-		break;
+			break;
+		default:
+			break;
 	}
 
 }
@@ -63,12 +49,10 @@ function handleLocation(e){
 var realtime;
 
 function bindKeyToLocation(){
-//	menu_index = 50;
-//	moveMenu(menu_index,true);
 	
-	realtime = setInterval(function(){
+	setTimeout(function() {
 		_getRealTimeGPS("tvduid", makeGoogleMap);
-	}, 1000*10);
+	}, 1000);
 	
 	$(document).unbind();
 	$(document).keydown(handleLocation);
@@ -79,20 +63,22 @@ var zoomflag = 17;
 
 function initMap() {
 	  var map = new google.maps.Map(document.getElementById('googleMap'), {
-	    zoom: 13,
-	    center: {lat: parseFloat(markers[0].lat), lng: parseFloat(markers[0].lng)}
+	    zoom: 17,
+	    center: {lat: parseFloat('37.503926'), lng: parseFloat('127.044846')}
 	  });
 
 	  var geocoder = new google.maps.Geocoder();
 
-	  document.getElementById('summitLocation').addEventListener('click', function() {
-	    geocodeAddress(geocoder, map);
-
-	  });
+//	  document.getElementById('summitLocation').addEventListener('click', function() {
+//	    geocodeAddress(geocoder, map);
+//
+//	  });
 }
  
 function geocodeAddress(geocoder, resultsMap) {
-	  var address = document.getElementById('search-1').value;
+	  var address = document.getElementById('set_location_search').value;
+	  if(address == "")
+		  address = "선릉";
 
 	  geocoder.geocode({'address': address}, function(results, status) {
 	    if (status === google.maps.GeocoderStatus.OK) {
@@ -100,6 +86,7 @@ function geocodeAddress(geocoder, resultsMap) {
 	      var location = results[0].geometry.location;
 	      
 	      markerSetting(resultsMap, location);
+	      geocodeAddress3(geocoder, resultsMap, location.G, location.K);
 	      
 	    } else {
 	      alert('Geocode was not successful for the following reason: ' + status);
@@ -127,7 +114,7 @@ function geocodeAddress2(geocoder, map, inputLat, inputLng) {
 	    if (status === google.maps.GeocoderStatus.OK) {
 	      if (results[1]) {	        
 	        addressResult = results[1].formatted_address;	        
-
+    		$("#location_position").text(addressResult);
 	      } else {
 	        window.alert('No results found');
 	      }
@@ -140,11 +127,39 @@ function geocodeAddress2(geocoder, map, inputLat, inputLng) {
 
 	}
 
+
+
+function geocodeAddress3(geocoder, map, inputLat, inputLng) {
+	  var lat = inputLat;
+	  var lng = inputLng;
+
+	  var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
+	  geocoder.geocode({'location': latlng}, function(results, status) {
+		  if (status === google.maps.GeocoderStatus.OK) {
+			  if (results[1]) {	        
+				  addressResult = results[1].formatted_address;	        
+				  $("#set_location_text").text(addressResult);
+
+			  } else {
+				  window.alert('No results found');
+			  }
+	    } else {
+	     // window.alert('Geocoder failed due to: ' + status);
+	    }
+
+	  });
+	  
+//	  if(addressResult == "undefined")
+//		  addressResult = "대한민국 서울특별시 강남구";
+//	  $("#set_location_text").text(addressResult);
+
+}
+
 var markers;
+var map;
 
 function makeGoogleMap(returnData) {
 	
-	console.log(returnData);
 	var results = returnData.results;
 	
 	markers = [
@@ -173,7 +188,7 @@ function makeGoogleMap(returnData) {
 	    zoom:zoomflag,
 	    mapTypeId:google.maps.MapTypeId.ROADMAP
 	  };
-	  var map=new google.maps.Map(document.getElementById("googleMap2"), mapProp);
+	  map = new google.maps.Map(document.getElementById("googleMap2"), mapProp);
 	  var geocoder = new google.maps.Geocoder();
 
 	  for (var i = 0; i < markers.length; i++) {
@@ -195,11 +210,7 @@ function makeGoogleMap(returnData) {
 	        	
 	        	$("#location_relation").text(markers[flag].title);
 	        	
-	        	if(addressResult != "undefined") {
-	        		$("#location_position").text(addressResult);
-	        	} else {
-	        		$("#location_position").text("Loading...");
-	        	}
+
 	        	
 	        	var center = new google.maps.LatLng(markers[flag].lat, markers[flag].lng);
 	            map.panTo(center);

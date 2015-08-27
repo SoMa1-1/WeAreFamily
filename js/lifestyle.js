@@ -75,6 +75,7 @@ function bindKeyToLifeStyle(){
 Chart.defaults.global.animation = false;
 var move_bar, phone_line, sleep_pie1, sleep_pie2, sleep_pie3, sleep_pie4;
 
+var randomNum150to200 = function(){ return Math.round(Math.random()*50) + 150};
 var randomNum60to100 = function(){ return Math.round(Math.random()*40) + 60};
 var randomNum30to60 = function(){ return Math.round(Math.random()*30) + 30};
 var randomNum0to30 = function(){ return Math.round(Math.random()*30)};

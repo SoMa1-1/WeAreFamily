@@ -36,7 +36,6 @@ function handleMission(e) {
 			}
 			break;
 		case TvKeyCode.KEY_ENTER:
-			console.log($(move[menu_index]));
 			$(move[menu_index]).click();
 			break;
 		case TvKeyCode.KEY_BACK:
@@ -44,6 +43,33 @@ function handleMission(e) {
 			break;
 		default:
 			break;
+	}
+	
+	showActivityLayout();
+}
+
+function showActivityLayout() {
+	if(menu_index >= 45 && menu_index < 48) {
+		$(".family_misson2").css( "left", "65%" );
+		$(".family_misson1").hide();
+		
+		$(".mission_movie").hide();
+		$(".mission_travel").hide();
+		$(".mission_event").hide();
+		
+		if(menu_index == 45)
+			$(".mission_movie").fadeIn();
+		else if(menu_index == 46)
+			$(".mission_travel").fadeIn();
+		else if(menu_index == 47)
+			$(".mission_event").fadeIn();
+	} else {
+		$(".family_misson2").css( "left", "55%" );
+		
+		$(".family_misson1").fadeIn();
+		$(".mission_movie").hide();
+		$(".mission_travel").hide();
+		$(".mission_event").hide();
 	}
 }
 

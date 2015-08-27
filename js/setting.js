@@ -44,6 +44,8 @@ function handleSetting(e) {
 function initSettingPage() {
 	$("#option_menus").show();
 	$("#menu1_code").hide();
+	$("#menu2_location").hide();
+	$("#set_location_search").blur();
 }
 
 function bindKeyToSetting(){
@@ -82,5 +84,19 @@ function startTimer(duration, display) {
             display.text("00:00");
         }
     }, 1000);
+}
+
+function showGoogleMap() {
+	  var map = new google.maps.Map(document.getElementById('googleMap3'), {
+	    zoom: 17,
+	    center: {lat: parseFloat('37.503926'), lng: parseFloat('127.044846')}
+	  });
+
+	  var geocoder = new google.maps.Geocoder();
+
+//	  document.getElementById('summitLocation').addEventListener('click', function() {
+//	    geocodeAddress(geocoder, map);
+//
+//	  });
 }
 

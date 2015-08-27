@@ -111,8 +111,8 @@ body {
 	
 	.family_misson1 {
 		position: absolute;
-		left: 10%;
-		top: 15%;
+		left: 5%;
+		top: 10%;
 	}
 	
 	.family_misson1 legend {
@@ -128,7 +128,7 @@ body {
 	.family_misson2 {
 		position: absolute;
 		left: 55%;
-		top: 15%;
+		top: 10%;
 	}
 	
 	.family_misson2 legend {
@@ -146,33 +146,27 @@ body {
 		left: 3%;
 		top: 15%;
 		
-		width: 35%;
+		width: 50%;
 	}
 	
 	.message_condition {
 		position: absolute;
-		left: 43%;
+		left: 57%;
 		top: 15%;
 		
-		width: 50%;
-		height: 75%;
+		width: 40%;
+		height: 80%;
 		
 		background-color: #C8E6C9;
 		border-radius: 15px;
 	}
 	
-	.message_select_from {
-		margin-left: 3%;
-		margin-top: 5%;
-		
-		width: 40%;
-	}
-	
-	.message_select_time, .message_select_event, .message_select_to, .message_select_message{
+	.message_select_time, .message_select_event, .message_select_to,
+	 .message_select_message, .message_select_option{
 		margin-left: 3%;
 		margin-top: 4%;
 		
-		width: 40%;
+		width: 95%;
 	}
 	
 	.option_menu1 {
@@ -222,6 +216,15 @@ body {
 		
 		background-color: #C8E6C9;
 		border-radius: 15px;
+	}
+	
+	#menu2_location {
+		position: absolute;
+		left: 10%;
+		top: 10%;
+		
+		width: 70%;
+		height: 70%;
 	}
 	
 

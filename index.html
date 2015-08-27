@@ -27,6 +27,7 @@
 	<script src="js/server.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/location.js"></script>
+	<script src="js/message.js"></script>
     <script src="js/lifestyle.js"></script>
     <script src="js/mission.js"></script>
     <script src="js/setting.js"></script>
@@ -41,7 +42,7 @@
 	
 		<div class="intro_box">
 			<!-- <img src="http://smartthings-blog.s3.amazonaws.com/wp-content/uploads/2013/09/Iot-101.jpg" width="500" height="500"> -->
-			<h1 class="intro_brand"> WE ARE FAMILY </h1>
+			<h1 class="intro_brand"> We Are Family </h1>
 		</div>
 		
 	</div>
@@ -89,56 +90,61 @@
             		<div id="section-Message" style="display: none;">
             		
             			<div class="message_location">
+            				<div>
+								<label>Time.</label>
+								<input id="message_set_time" type="time" value="">
+							</div>
             			
-            				<form>
-							     <label for="search-1">Search:</label>
-							     <input type="search" name="search-1" id="search-1" value="">
-							</form>
+            				<div>
+								<div style="float: left; margin-right: 20px; width: 35%;">
+									<label>Location.</label>
+								    <input id="message_set_location" type="search" name="search-1" id="search-1" value="">
+								</div>
+								
+								<div style="float: left; width: 60%;">
+									<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+									    <legend>Select, Event</legend>
+									        <input type="radio" name="radio-choice-f" id="radio-choice-c" value="list">
+									        <label for="radio-choice-c" style="margin-left: 15px;">해당위치에 있을때</label>
+									        <input type="radio" name="radio-choice-f" id="radio-choice-d" value="grid">
+									        <label for="radio-choice-d" style="margin-left: 15px;">해당위치에 없을때</label>
+									</fieldset>
+								</div>
+							</div>
 							
-							<div id="googleMap" style="width: 100%; height: 400px;"></div>
+							<div id="googleMap" style="width: 100%; height: 300px;"></div>
             			
+            				
             			</div>
             			
             			<div class="message_condition">
             			
-            				<div class="message_select_from">
-	            				<label for="select-choice-1" class="select">Select, Family Member</label>
-								<select name="select-choice-1" id="select-choice-1">
-								    <option value="standard">Father</option>
-								    <option value="rush">Mother</option>
-								    <option value="express">Son</option>
-								    <option value="overnight">Daughter</option>
-								</select>
-							</div>
-							
-							<div class="message_select_time">
-								<label for="text-basic">Select, Time</label>
-								<input type="time" name="text-basic" id="text-basic" value="">
-							</div>
-							
-							<div class="message_select_event">
-								<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-								    <legend>Select, Event</legend>
-								        <input type="radio" name="radio-choice-f" id="radio-choice-c" value="list" checked="checked">
-								        <label for="radio-choice-c">있으면</label>
-								        <input type="radio" name="radio-choice-f" id="radio-choice-d" value="grid">
-								        <label for="radio-choice-d">없으면</label>
+							<div class="message_select_to">
+	            				<h2>To. </h2>
+								<fieldset data-role="controlgroup" data-type="horizontal">
+								    <input type="checkbox" name="checkbox-h-2a" id="checkbox-h-2a">
+								    <label id="message_father" for="checkbox-h-2a" style="margin-left: 15px;">Father</label>
+								    <input type="checkbox" name="checkbox-h-2b" id="checkbox-h-2b">
+								    <label id="message_mother" for="checkbox-h-2b" style="margin-left: 15px;">Mother</label>
+								    <input type="checkbox" name="checkbox-h-2c" id="checkbox-h-2c">
+								    <label id="message_son" for="checkbox-h-2c" style="margin-left: 15px;">Son</label>
+								    <input type="checkbox" name="checkbox-h-2d" id="checkbox-h-2d">
+								    <label id="message_daughter" for="checkbox-h-2d" style="margin-left: 15px;">Daughter</label>
 								</fieldset>
 							</div>
 							
-							<div class="message_select_to">
-	            				<label for="select-choice-1" class="select">Select, Family Member</label>
-								<select name="select-choice-1" id="select-choice-1">
-								    <option value="standard">Father</option>
-								    <option value="rush">Mother</option>
-								    <option value="express">Son</option>
-								    <option value="overnight">Daughter</option>
-								</select>
-								<label>Input, Message</label>
+							<div class="message_select_option" data-role="controlgroup" data-type="horizontal">
+							
+								<h2>Options. </h2>
+							
+							    <a id="message_option_time" href="#" data-role="button">Time</a>
+							    <a id="message_option_location" href="#" data-role="button">Location</a>
 							</div>
 							
 							<div class="message_select_message">
-								<ul data-role="listview" data-inset="true" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Insert Message!">
+							
+								<h2>Message. </h2>
+								<ul id="message_msg" data-role="listview" data-inset="true" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Insert Message!">
 								    <li><a href="#">Acura</a></li>
 								    <li><a href="#">Audi</a></li>
 								    <li><a href="#">BMW</a></li>
@@ -163,6 +169,8 @@
 								    <li><a href="#">Volvo</a></li>
 								</ul>
 							</div>
+							
+							<a id="message_register" href="#" data-role="button" data-inline="true" style="float: right;">Register</a>
             				
             			</div>
             		
@@ -178,6 +186,7 @@
             		
             			<div class="chart_move">
             				<h2 style="text-align: center;"> Move Distance </h2>
+            				<span style="position: absolute; top: 40px;">km</span>
 							<canvas id="canvas_move" height="500" width="500"></canvas>
 						</div>
 						
@@ -206,6 +215,7 @@
 						
 						<div class="chart_phone">
 							<h2 style="text-align: center;"> Phone Using Time </h2>
+							<span style="position: absolute; top: 40px;">minute</span>
 							<hr style="position: absolute; width: 290px; color: red; background-color: red; height: 1px; border: 0; left: 30px; top: 140px;" />
 							<canvas id="canvas_phone" height="320" width="350"></canvas>
 						</div>
@@ -217,6 +227,7 @@
 								    <li data-icon="false"><a href="#">
 								        <img src="images/icon_father.png">
 								        <h2>Father</h2>
+								        <h6 style="float: left; font-size: 20px; position: absolute; left: 35px; top: 50px;">HP : </h6>
 								        <div id="HPbar_father"><div id="HPlabel_father"></div></div></a>
 								    </li>
 						    	</div>
@@ -225,6 +236,7 @@
 								    <li data-icon="false"><a href="#">
 								        <img src="images/icon_mother.png">
 								        <h2>Mother</h2>
+								        <h6 style="float: left; font-size: 20px; position: absolute; left: 35px; top: 50px;">HP : </h6>
 								        <div id="HPbar_mother"><div id="HPlabel_mother"></div></div></a>
 								    </li>
 						    	</div>
@@ -233,6 +245,7 @@
 								    <li data-icon="false"><a href="#">
 								        <img src="images/icon_child.png">
 								        <h2>Son</h2>
+								        <h6 style="float: left; font-size: 20px; position: absolute; left: 35px; top: 50px;">HP : </h6>
 								        <div id="HPbar_son"><div id="HPlabel_son"></div></div></a>
 								    </li>
 						    	</div>
@@ -241,6 +254,7 @@
 								    <li data-icon="false"><a href="#">
 								        <img src="images/icon_child.png">
 								        <h2>Daughter</h2>
+								        <h6 style="float: left; font-size: 20px; position: absolute; left: 35px; top: 50px;">HP : </h6>
 								        <div id="HPbar_daughter"><div id="HPlabel_daughter"></div></div></a>
 								    </li>
 						    	</div>
@@ -252,19 +266,19 @@
             		<div id="section-Mission" style="display: none;">
             		
             			<div class="family_misson1">
-	            			<form style="margin-bottom: 10%;">
+	            			<form>
 							    <fieldset data-role="controlgroup">
-							        <legend>라이프스타일 기반 미션. 1 </legend>
+							        <legend>Today Family Mission. </legend>
 							        <input type="checkbox" name="lifestyle_mission1" id="checkbox-t-2a" data-theme="d">
-							        <label id="lifestyle_mission1" for="checkbox-t-2a">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <label id="lifestyle_mission1" for="checkbox-t-2a">아빠 피로도가 높네요! 어깨 한 번 주물러주세요.</label>
 							        <input type="checkbox" name="lifestyle_mission2" id="checkbox-t-2b" data-theme="d">
-							        <label id="lifestyle_mission2" for="checkbox-t-2b">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <label id="lifestyle_mission2" for="checkbox-t-2b">아들과 딸의 휴대폰 사용량이 많네요.</br> 조금 시간을 줄여보는 것은 어떤가요?</label>
 							        <input type="checkbox" name="lifestyle_mission3" id="checkbox-t-2c" data-theme="d">
-							        <label id="lifestyle_mission3" for="checkbox-t-2c">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <label id="lifestyle_mission3" for="checkbox-t-2c">엄마 활동량 너무 적으시네요.<br/>아들과 집앞 공원 3바퀴 돌고오기.</label>
 							        <input type="checkbox" name="lifestyle_mission4" id="checkbox-t-2d" data-theme="d">
-							        <label id="lifestyle_mission4" for="checkbox-t-2d">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <label id="lifestyle_mission4" for="checkbox-t-2d">오늘 저녁은 맛있는 외식식사 어떠신가요?</label>
 							        <input type="checkbox" name="lifestyle_mission5" id="checkbox-t-2e" data-theme="d">
-							        <label id="lifestyle_mission5" for="checkbox-t-2e">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <label id="lifestyle_mission5" for="checkbox-t-2e">서로에게 안부전화 한 통씩 해요.</label>
 							    </fieldset>
 							</form>
 						</div>
@@ -272,15 +286,27 @@
 						<div class="family_misson2">
 	            			<form>
 							    <fieldset data-role="controlgroup">
-							        <legend>컨텐츠 기반 미션 1. </legend>
+							        <legend>Activity </legend>
 							        <input type="checkbox" name="checkbox-v-2a" id="checkbox-v-2a">
-							        <label id="content_mission1" for="checkbox-v-2a">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <label id="content_mission1" for="checkbox-v-2a">다 같이 영화보러가기!</label>
 							        <input type="checkbox" name="checkbox-v-2b" id="checkbox-v-2b">
-							        <label id="content_mission2" for="checkbox-v-2b">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <label id="content_mission2" for="checkbox-v-2b">가족여행 떠나기</label>
 							        <input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
-							        <label id="content_mission3" for="checkbox-v-2c">가족미션 가족미션 가족미션 가족미션 가족미션</label>
+							        <label id="content_mission3" for="checkbox-v-2c">한강몽땅 여름축제 2015 참가하기.</label>
 							    </fieldset>
 							</form>
+						</div>
+						
+						<div class="mission_movie" style="maring-left: 15px; margin-top: 15px; display: none;">
+							<img src="./images/mission_movie.png" width="650" height="550">
+						</div>
+						
+						<div class="mission_travel" style="maring-left: 15px; margin-top: 15px; display: none;">
+							<img src="./images/mission_travel.png" width="650" height="550">
+						</div>
+						
+						<div class="mission_event" style="maring-left: 15px; margin-top: 15px; display: none;">
+							<img src="./images/mission_event.png" width="650" height="550">
 						</div>
             		
             		</div>
@@ -327,6 +353,16 @@
 			            	<h1 class="sub_title">Registration closes in <span id="time"></span> minutes!</h1>
 			            	
             			</form>
+            			
+            			<div id="menu2_location" style="display: none;">
+            				<div>
+							     <input type="search" id="set_location_search" value="">
+							</div>
+							
+            				<div id="googleMap3" style="width: 100%; height: 350px;"></div>
+            				
+            				<h1>Location : <span id="set_location_text"></span></h1>
+            			</div>
             		</div>
             		
             	</div>
