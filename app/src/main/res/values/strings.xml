@@ -17,7 +17,6 @@
     </string>
     <string name="title_activity_main">MainActivity</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_title">TitleActivity</string>
 
     <string name="registering_message_ready">InstanceID 토큰 가져오기</string>
